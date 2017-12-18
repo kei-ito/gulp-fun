@@ -7,7 +7,7 @@
 [![dependencies Status](https://david-dm.org/kei-ito/gulp-fun/status.svg)](https://david-dm.org/kei-ito/gulp-fun)
 [![devDependencies Status](https://david-dm.org/kei-ito/gulp-fun/dev-status.svg)](https://david-dm.org/kei-ito/gulp-fun?type=dev)
 
-Helper functions for developers who like [gulp](https://www.npmjs.com/package/gulp) but want/need to write transformations without plugins.
+A helper for developers who like [gulp](https://www.npmjs.com/package/gulp) but want/need to write transformations without plugins.
 
 ## Install
 
