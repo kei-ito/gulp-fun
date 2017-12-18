@@ -1,0 +1,28 @@
+{
+  "name": "gulp-fun",
+  "version": "0.0.1",
+  "description": "Create a transform stream from sync/async function.",
+  "author": {
+    "name": "Kei Ito",
+    "email": "kei.itof@gmail.com",
+    "url": "https://github.com/kei-ito"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6"
+  },
+  "repository": "kei-ito/gulp-fun",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "nlib-lint bin src test",
+    "test": "node test",
+    "test_coverage": "nyc --reporter=lcov --reporter=text npm test"
+  },
+  "devDependencies": {
+    "@nlib/lint": "^2.2.0",
+    "@nlib/stream-tap": "0.0.3",
+    "@nlib/test": "^1.2.0",
+    "vinyl-fs": "^3.0.0"
+  },
+  "dependencies": {}
+}
