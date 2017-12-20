@@ -76,6 +76,53 @@ gulp.src('src/*.html')
 .pipe(gulp.dest('dest'));
 ```
 
+## Javascript API
+
+`require('gulp-fun')` returns `{middleware}`.
+
+#### middleware(fn, {parallel})
+
+Return a transform stream.
+
+- **fn**<br>
+  type: [`Function`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Function)<br>
+  The function transforms incoming data.
+
+- **parallel**<br>
+  type: [`Boolean`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)<br>
+  default: `false`<br>
+  A flag that switches sequential/parallel mode.
+
+## sequential/parallel mode
+
+```javascript
+const {PassThrough} = require('stream');
+const source = new PassThrough();
+setImmediate(() => {
+  source.write('foo');
+  source.write('bar');
+});
+source
+.pipe(middleware(async (file, stream) => {
+  stream.push(`${file}-1`);
+  await new Promise(setImmediate);
+  stream.push(`${file}-2`);
+}, {parallel: ????}))
+.on('data', console.log);
+// sequential mode (parallel: false)
+// foo-1 → foo-2 → bar-1 → bar-2
+// parallel mode (parallel: true)
+// foo-1 → bar-1 → foo-2 → bar-2
+```
+
+In sequential mode, transform function is called sequentially.
+If the function is an async function,
+the next call is after the previous call is resolved.
+
+In parallel mode, transform function is called when new data is available.
+Even if the function is an async function,
+the next call doesn't wait the previous call is resolved.
+
 ## License
 
 MIT
