@@ -14,14 +14,14 @@
   "repository": "kei-ito/gulp-fun",
   "main": "src/index.js",
   "scripts": {
-    "lint": "nlib-lint bin src test",
+    "lint": "nlib-lint src test",
     "test": "node test",
     "test_coverage": "nyc --reporter=lcov --reporter=text npm test"
   },
   "devDependencies": {
-    "@nlib/lint": "^2.2.0",
+    "@nlib/lint": "^2.2.1",
     "@nlib/stream-tap": "0.0.3",
-    "@nlib/test": "^1.2.0",
+    "@nlib/test": "^1.2.2",
     "vinyl-fs": "^3.0.0"
   },
   "dependencies": {}
