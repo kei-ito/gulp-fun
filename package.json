@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@nlib/lint": "^2.2.1",
-    "@nlib/stream-tap": "0.0.3",
+    "@nlib/stream-tap": "1.1.1",
     "@nlib/test": "^1.2.2",
     "vinyl-fs": "^3.0.0"
   },
