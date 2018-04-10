@@ -1,13 +1,10 @@
 # gulp-fun
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/kei-ito/gulp-fun.svg)](https://greenkeeper.io/)
-
 [![Build Status](https://travis-ci.org/kei-ito/gulp-fun.svg?branch=master)](https://travis-ci.org/kei-ito/gulp-fun)
 [![Build status](https://ci.appveyor.com/api/projects/status/github/kei-ito/gulp-fun?branch=master&svg=true)](https://ci.appveyor.com/project/kei-ito/gulp-fun/branch/master)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=clRVWTBmQVdFcHNGaDFvMDlxanRoZllsMGN1RU9JNW1CRUtEVjkxQ2NMZz0tLUVMdFpUZnJKajltN0FSTWlJeXBCbVE9PQ==--046a5961a5e492a5b38e13d34a12a6ca2a8c1139)](https://www.browserstack.com/automate/public-build/clRVWTBmQVdFcHNGaDFvMDlxanRoZllsMGN1RU9JNW1CRUtEVjkxQ2NMZz0tLUVMdFpUZnJKajltN0FSTWlJeXBCbVE9PQ==--046a5961a5e492a5b38e13d34a12a6ca2a8c1139)
 [![codecov](https://codecov.io/gh/kei-ito/gulp-fun/branch/master/graph/badge.svg)](https://codecov.io/gh/kei-ito/gulp-fun)
-[![dependencies Status](https://david-dm.org/kei-ito/gulp-fun/status.svg)](https://david-dm.org/kei-ito/gulp-fun)
-[![devDependencies Status](https://david-dm.org/kei-ito/gulp-fun/dev-status.svg)](https://david-dm.org/kei-ito/gulp-fun?type=dev)
 
 A helper for developers who like [gulp](https://www.npmjs.com/package/gulp) but want/need to write transformations without plugins.
 
