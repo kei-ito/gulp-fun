@@ -18,18 +18,18 @@ npm install gulp-fun --save-dev
 
 ```javascript
 const gulp = require('gulp');
-const {middleware} = require('gulp-fun');
+const {sequential} = require('gulp-fun');
 const {rollup} = require('rollup');
 const UglifyJS = require('uglify-js');
 
 gulp.src('src/*.js')
-.pipe(middleware(async (file, stream) => {
+.pipe(sequential(async (file, stream) => {
   // async middleware
   const bundle = await rollup({input: file.path});
   ({code: file.content} = await bundle.generate({format: 'es'}));
   stream.push(file);
 }))
-.pipe(middleware((file, stream) => {
+.pipe(sequential((file, stream) => {
   // sync middleware
   file.content = UglifyJS.minify(file.content);
   stream.push(file);
@@ -45,13 +45,13 @@ gulp.src('src/*.js')
 const path = require('path');
 const gulp = require('gulp');
 const {StartingGate} = require('@nlib/stream-tap');
-const {middleware} = require('gulp-fun');
+const {sequential} = require('gulp-fun');
 const UglifyJS = require('uglify-js');
 const gate = new StartingGate();
 const renamedFiles = new Set();
 
 gulp.src('src/*.js')
-.pipe(middleware((file, stream) => {
+.pipe(sequential((file, stream) => {
   file.content = UglifyJS.minify(file.content);
   file.extname = '.min.js';
   renamedFiles.add(file);
@@ -62,7 +62,7 @@ gulp.src('src/*.js')
 
 gulp.src('src/*.html')
 .pipe(gate.put()) // Put a gate tap before replacer
-.pipe(middleware((file, stream) => {
+.pipe(sequential((file, stream) => {
   // The gate will be opened when all streams before the gate flushes all data.
   // i.e. This function will be called after *.js files are minified and changed its name.
   for (const {history} of renamedFiles) {
@@ -77,9 +77,9 @@ gulp.src('src/*.html')
 
 ## Javascript API
 
-`require('gulp-fun')` returns `{middleware}`.
+`require('gulp-fun')` returns `{sequential, parallel}`.
 
-#### middleware(fn, {parallel})
+#### sequential(fn), parallel(fn)
 
 Return a transform stream.
 
@@ -87,12 +87,7 @@ Return a transform stream.
   type: [`Function`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Function)<br>
   The function transforms incoming data.
 
-- **parallel**<br>
-  type: [`Boolean`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)<br>
-  default: `false`<br>
-  A flag that switches sequential/parallel mode.
-
-## sequential/parallel mode
+## sequential or parallel
 
 ```javascript
 const {PassThrough} = require('stream');
@@ -102,11 +97,12 @@ setImmediate(() => {
   source.write('bar');
 });
 source
-.pipe(middleware(async (file, stream) => {
+.pipe(sequential(async (file, stream) => {
+// .pipe(parallel(async (file, stream) => {
   stream.push(`${file}-1`);
   await new Promise(setImmediate);
   stream.push(`${file}-2`);
-}, {parallel: ????}))
+})
 .on('data', console.log);
 // sequential mode (parallel: false)
 // foo-1 → foo-2 → bar-1 → bar-2
