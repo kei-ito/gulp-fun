@@ -1,6 +1,5 @@
 const {Transform} = require('stream');
-
-module.exports = class Sequential extends Transform {
+exports.Sequential = class Sequential extends Transform {
 
 	constructor(fn) {
 		super({
@@ -8,9 +7,7 @@ module.exports = class Sequential extends Transform {
 			transform(file, encoding, callback) {
 				Promise.resolve()
 				.then(() => fn(file, this))
-				.then(() => {
-					callback();
-				})
+				.then(() => callback())
 				.catch(callback);
 			},
 		});

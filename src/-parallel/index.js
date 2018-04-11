@@ -1,6 +1,5 @@
 const {Transform} = require('stream');
-
-module.exports = class Parallel extends Transform {
+exports.Parallel = class Parallel extends Transform {
 
 	constructor(fn) {
 		const promises = [];
