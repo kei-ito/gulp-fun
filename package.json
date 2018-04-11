@@ -1,6 +1,6 @@
 {
   "name": "gulp-fun",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Create a transform stream from sync/async function.",
   "author": {
     "name": "Kei Ito",
