@@ -12,9 +12,9 @@
 		"node": ">=6"
 	},
 	"repository": "kei-ito/gulp-fun",
-	"main": "src/index.js",
+	"main": "lib/index.js",
 	"scripts": {
-		"lint": "eslint src test",
+		"lint": "eslint lib test",
 		"test": "tap --coverage test/index.js"
 	},
 	"devDependencies": {
