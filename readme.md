@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/kei-ito/gulp-fun.svg?style=svg)](https://circleci.com/gh/kei-ito/gulp-fun)
 [![Build Status](https://travis-ci.com/kei-ito/gulp-fun.svg?branch=master)](https://travis-ci.com/kei-ito/gulp-fun)
 [![Build status](https://ci.appveyor.com/api/projects/status/5oop799u6d3465mk?svg=true)](https://ci.appveyor.com/project/kei-ito/gulp-fun)
+[![codecov](https://codecov.io/gh/kei-ito/gulp-fun/branch/master/graph/badge.svg)](https://codecov.io/gh/kei-ito/gulp-fun)
 
 A helper for developers who like [gulp](https://www.npmjs.com/package/gulp) but want/need to write transformations without plugins.
 
@@ -80,4 +81,4 @@ the next call doesn't wait the previous call is resolved.
 
 ## LICENSE
 
-The esifycss project is licensed under the terms of the Apache 2.0 License.
+The gulp-fun project is licensed under the terms of the Apache 2.0 License.
