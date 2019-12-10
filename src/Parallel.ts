@@ -4,25 +4,26 @@ import {Handler, File} from './types';
 export class Parallel extends stream.Transform {
 
     public constructor(fn: Handler) {
-        const promises: Array<Promise<Error | void>> = [];
+        const tasks: Array<Promise<void>> = [];
+        const errors: Array<Error> = [];
         super({
             objectMode: true,
             transform(file: File, _encoding, callback) {
-                promises.push(
-                    Promise.resolve()
-                    .then(() => fn(file, this))
-                    .then(() => {})
-                    .catch((error) => error)
+                tasks.push(
+                    (async () => {
+                        await fn(file, this);
+                    })()
+                    .catch((error) => {
+                        errors.push(error);
+                    }),
                 );
                 callback();
             },
             flush(callback) {
-                Promise.all(promises)
-                .then((errors) => {
-                    for (const error of errors) {
-                        if (error) {
-                            throw error;
-                        }
+                Promise.all(tasks)
+                .then(() => {
+                    if (0 < errors.length) {
+                        throw new Error(`CaughtErrors:\n${errors.join('\n')}`);
                     }
                     callback();
                 })

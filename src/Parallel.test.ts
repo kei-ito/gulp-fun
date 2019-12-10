@@ -12,13 +12,13 @@ test('load files', async (t) => {
     const called: Array<string> = [];
     const output = await new Promise<Array<File>>((resolve, reject) => {
         const logger = new Logger<File>();
-        vfs.src(path.join(__dirname, '*'), {
-            buffer: false,
-            read: false,
-        })
+        vfs.src(
+            path.join(__dirname, '*'),
+            {buffer: false, read: false},
+        )
         .pipe(parallel(async (file, stream) => {
             called.push(file.path);
-            const duration = 20 * (files.length - files.indexOf(file.path));
+            const duration = 50 * (files.length - files.indexOf(file.path));
             await new Promise((resolve) => setTimeout(resolve, duration));
             stream.push(file);
         }))
@@ -30,4 +30,21 @@ test('load files', async (t) => {
         output.map((file) => file.path),
         called.reverse(),
     );
+});
+
+test('report errors', async (t) => {
+    const called: Array<string> = [];
+    const output = await new Promise<Array<File>>((resolve, reject) => {
+        vfs.src(
+            path.join(__dirname, '*'),
+            {buffer: false, read: false},
+        )
+        .pipe(parallel((file) => {
+            called.push(file.path);
+            throw new Error(file.path);
+        }))
+        .once('end', () => reject(new Error('UnexpectedResolution')))
+        .once('error', resolve);
+    });
+    t.true(`${output}`.trim().split('\n').slice(1).every((line, index) => line.endsWith(called[index])));
 });
