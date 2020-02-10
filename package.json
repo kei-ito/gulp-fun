@@ -9,7 +9,7 @@
     },
     "license": "Apache-2.0",
     "engines": {
-        "node": ">=6"
+        "node": ">=10"
     },
     "repository": "kei-ito/gulp-fun",
     "main": "lib/index.js",
@@ -19,7 +19,7 @@
     "scripts": {
         "lint": "eslint src/**/*.ts",
         "build": "tsc",
-        "test": "ava -v",
+        "test": "ava",
         "version:changelog": "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --release-count 0",
         "version:add": "git add .",
         "version": "run-s version:changelog version:add",
@@ -30,27 +30,27 @@
     "devDependencies": {
         "@commitlint/cli": "8.3.5",
         "@commitlint/config-conventional": "8.3.4",
-        "@nlib/lint": "^3.15.1",
-        "@nlib/remove-sourcemap": "^3.15.6",
-        "@types/node": "^12.12.16",
+        "@nlib/lint": "^3.17.1",
+        "@nlib/remove-sourcemap": "^3.17.1",
+        "@types/node": "^13.7.0",
         "@types/vinyl": "2.0.4",
         "@types/vinyl-fs": "2.4.11",
-        "@typescript-eslint/eslint-plugin": "^2.11.0",
-        "@typescript-eslint/parser": "^2.11.0",
-        "ava": "2.4.0",
-        "conventional-changelog-cli": "2.0.28",
-        "eslint": "^6.7.2",
-        "husky": "^3.1.0",
-        "lint-staged": "^9.5.0",
+        "@typescript-eslint/eslint-plugin": "^2.19.0",
+        "@typescript-eslint/parser": "^2.19.0",
+        "ava": "^3.3.0",
+        "conventional-changelog-cli": "^2.0.31",
+        "eslint": "^6.8.0",
+        "husky": "^4.2.1",
+        "lint-staged": "^10.0.7",
         "npm-run-all": "4.1.5",
-        "rimraf": "^3.0.0",
-        "ts-node": "^8.5.4",
-        "typescript": "^3.7.3",
+        "rimraf": "^3.0.2",
+        "ts-node": "^8.6.2",
+        "typescript": "^3.7.5",
         "vinyl-fs": "3.0.3"
     },
     "ava": {
-        "compileEnhancements": false,
         "extensions": [
+            "js",
             "ts"
         ],
         "require": [
